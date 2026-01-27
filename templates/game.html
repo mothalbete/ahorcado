@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="contenedor">
+
+    <!-- PANEL DE IDIOMA ARRIBA -->
+    <h2>Idioma</h2>
+    <div id="panel-idioma"></div>
+
+    <!-- ======== FILA PRINCIPAL: LETRA + TECLADO ======== -->
+    <div id="fila-principal">
+
+        <!-- LETRA A LA IZQUIERDA -->
+        <div id="col-letra">
+
+            <!-- Botón encima del panel -->
+            <button id="btn-completar-letra" class="btn-meta">Completar letra</button>
+
+            <h2>Letra</h2>
+
+            <div id="panel-letra" class="panel placeholder">
+                Pulsa “Iniciar juego” para comenzar
+            </div>
+
+        </div>
+
+        <!-- TECLADO A LA DERECHA -->
+        <div id="col-teclado">
+            <h2>Teclado</h2>
+            <div id="teclado" class="placeholder">
+                El teclado aparecerá aquí
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======== FILA TÍTULO + ARTISTA ======== -->
+    <div id="fila-meta">
+
+        <div class="meta-bloque">
+            <h2>Título</h2>
+            <div id="panel-titulo" class="panel panel-meta"></div>
+            <button id="btn-completar-titulo" class="btn-meta">Completar título</button>
+        </div>
+
+        <div class="meta-bloque">
+            <h2>Artista</h2>
+            <div id="panel-artista" class="panel panel-meta"></div>
+            <button id="btn-completar-artista" class="btn-meta">Completar artista</button>
+        </div>
+
+    </div>
+
+    <!-- BOTONES PRINCIPALES ABAJO DEL TODO -->
+    <div class="botones">
+        <button id="btn-iniciar">Iniciar juego</button>
+        <button id="btn-siguiente">Siguiente canción</button>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+/* ======== RESET ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* ======== BODY ======== */
+body {
+    background: #f4f4f8;
+    color: #333;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ======== CONTENEDOR PRINCIPAL ======== */
+#contenedor {
+    width: 100%;
+    max-width: 1500px;
+    background: white;
+    padding: 40px 50px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ======== PANEL DE IDIOMA ======== */
+#panel-idioma {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ======== FILA PRINCIPAL: LETRA + TECLADO ======== */
+#fila-principal {
+    display: flex;
+    gap: 40px;
+    align-items: stretch; /* clave: iguala alturas */
+}
+
+/* ======== COLUMNA LETRA ======== */
+#col-letra {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ======== PANEL LETRA ======== */
+.panel {
+    background: #fafafa;
+    padding: 40px 50px;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+
+    font-size: 1.7rem;
+    line-height: 2.1;
+
+    max-width: 900px;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* ======== BOTÓN REVELAR LETRA ======== */
+.btn-meta {
+    width: 100%;
+    padding: 12px 22px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.btn-meta:hover {
+    background: #3454d1;
+}
+
+/* ======== COLUMNA TECLADO ======== */
+#col-teclado {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+/* ======== TECLADO ======== */
+#teclado {
+    flex: 1; /* clave: ocupa toda la altura disponible */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    align-content: stretch;
+}
+
+.tecla {
+    background: #ececec;
+    color: #333;
+    border: none;
+    padding: 14px 0;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.tecla:hover {
+    background: #dcdcdc;
+}
+
+.tecla:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.tecla.acierto {
+    background: #2ecc71 !important;
+    color: white;
+}
+
+.tecla.fallo {
+    background: #e74c3c !important;
+    color: white;
+}
+
+/* ======== FILA TÍTULO + ARTISTA ======== */
+#fila-meta {
+    display: flex;
+    gap: 40px;
+}
+
+.meta-bloque {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel-meta {
+    padding: 25px;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 900px) {
+    #fila-principal {
+        flex-direction: column;
+    }
+    #teclado {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}

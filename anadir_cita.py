@@ -25,8 +25,18 @@ def add_cita(cita, autor, año, idioma):
 # ============================
 
 add_cita(
-    cita="MI BURRITO SABANERO",
-    autor="LUA",
-    año="2025",
+    cita="MIRA, COMO TE HAGAN PILLARLE TODO EL PUTO CARIÑO DEL MUNDO \n" 
+    "A ESTA NIÑA Y LA MATEN, LE PRENDO FUEGO A LAS OFICINAS DE ATLUS, EH. ",
+    autor="ALEXELCAPO",
+    año="2023",
+    idioma="ESPAÑOL"
+)
+
+add_cita(
+    cita="PERO, LOCO, ¿ME HE ROTO EL CUELLO! ¿EL RESTO DEL JUEGO ESTOY\n " 
+    "TUMBADO EN UN HOSPITAL Y SOY TETRAPLÉGICO? NOS HEMOS ROTO EL CUELLO.\n" 
+    "ME HE PARTIDO LA COLUMNA.",
+    autor="ALEXELCAPO",
+    año="2023",
     idioma="ESPAÑOL"
 )

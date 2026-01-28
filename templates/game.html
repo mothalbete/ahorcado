@@ -1,60 +1,69 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div id="contenedor">
+<!-- ZONA DE JUEGO: CONTENEDOR IZQUIERDA + TECLADO DERECHA -->
+<div id="zona-juego">
 
-    <!-- PANEL DE IDIOMA ARRIBA -->
-    <h2>Idioma</h2>
-    <div id="panel-idioma"></div>
+    <!-- ============================
+         CONTENEDOR BLANCO IZQUIERDA
+         ============================ -->
+    <div id="contenedor">
 
-    <!-- ======== FILA PRINCIPAL: LETRA + TECLADO ======== -->
-    <div id="fila-principal">
-
-        <!-- LETRA A LA IZQUIERDA -->
+        <!-- PANEL DE CITA -->
         <div id="col-letra">
 
-            <!-- Botón encima del panel -->
-            <button id="btn-completar-letra" class="btn-meta">Completar letra</button>
+            <!-- Botones superiores -->
+            <div id="botones-superiores">
+                <button id="btn-completar-cita" class="btn-meta">Completar cita</button>
+                <button id="btn-revelar" class="btn-meta">Revelar cita</button>
+            </div>
 
-            <h2>Letra</h2>
+            <h2>Cita</h2>
 
-            <div id="panel-letra" class="panel placeholder">
+            <div id="panel-cita" class="panel placeholder">
                 Pulsa “Iniciar juego” para comenzar
             </div>
 
-        </div>
+            <!-- ============================
+                 CHIPS: IDIOMA + AUTOR + AÑO
+                 ============================ -->
+            <div id="chips-meta">
 
-        <!-- TECLADO A LA DERECHA -->
-        <div id="col-teclado">
-            <h2>Teclado</h2>
-            <div id="teclado" class="placeholder">
-                El teclado aparecerá aquí
+                <div class="chip">
+                    <span class="chip-label">Idioma:</span>
+                    <span id="panel-idioma" class="chip-value"></span>
+                </div>
+
+                <div class="chip">
+                    <span class="chip-label">Autor:</span>
+                    <span id="panel-autor" class="chip-value"></span>
+                </div>
+
+                <div class="chip">
+                    <span class="chip-label">Año:</span>
+                    <span id="panel-anio" class="chip-value"></span>
+                </div>
+
             </div>
+
+            <!-- Botones principales -->
+            <div class="botones">
+                <button id="btn-iniciar">Iniciar juego</button>
+                <button id="btn-siguiente">Siguiente cita</button>
+            </div>
+
         </div>
 
     </div>
 
-    <!-- ======== FILA TÍTULO + ARTISTA ======== -->
-    <div id="fila-meta">
-
-        <div class="meta-bloque">
-            <h2>Título</h2>
-            <div id="panel-titulo" class="panel panel-meta"></div>
-            <button id="btn-completar-titulo" class="btn-meta">Completar título</button>
+    <!-- ============================
+         TECLADO A LA DERECHA
+         ============================ -->
+    <div id="bloque-teclado">
+        <h2>Teclado</h2>
+        <div id="teclado" class="placeholder">
+            El teclado aparecerá aquí
         </div>
-
-        <div class="meta-bloque">
-            <h2>Artista</h2>
-            <div id="panel-artista" class="panel panel-meta"></div>
-            <button id="btn-completar-artista" class="btn-meta">Completar artista</button>
-        </div>
-
-    </div>
-
-    <!-- BOTONES PRINCIPALES ABAJO DEL TODO -->
-    <div class="botones">
-        <button id="btn-iniciar">Iniciar juego</button>
-        <button id="btn-siguiente">Siguiente canción</button>
     </div>
 
 </div>

@@ -1,14 +1,14 @@
 import sqlite3
 
-conn = sqlite3.connect("canciones.db")
+conn = sqlite3.connect("citas.db")
 c = conn.cursor()
 
 c.execute("""
-CREATE TABLE canciones (
+CREATE TABLE citas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    letra_cancion TEXT NOT NULL,
-    titulo TEXT NOT NULL,
-    artista TEXT NOT NULL,
+    cita TEXT NOT NULL,
+    autor TEXT NOT NULL,
+    año INTEGER,
     idioma TEXT DEFAULT 'desconocido',
     created_at TEXT,
     updated_at TEXT
@@ -18,4 +18,4 @@ CREATE TABLE canciones (
 conn.commit()
 conn.close()
 
-print("✔ Base de datos creada correctamente con columna 'idioma'.")
+print("✔ Base de datos creada correctamente para citas.")

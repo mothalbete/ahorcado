@@ -5,22 +5,25 @@ import unicodedata
 
 app = Flask(__name__)
 
+DB_PATH = "citas.db"
+
+
 def normalizar(texto):
     return ''.join(
         c for c in unicodedata.normalize('NFD', texto)
         if unicodedata.category(c) != 'Mn'
     )
 
-def obtener_cancion_aleatoria():
-    conn = sqlite3.connect("canciones.db")
+
+def obtener_cita_aleatoria():
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
     c.execute("""
-        SELECT id, letra_cancion, titulo, artista, idioma
-        FROM canciones
-        WHERE letra_cancion IS NOT NULL
-          AND titulo IS NOT NULL
-          AND artista IS NOT NULL
+        SELECT id, cita, autor, año, idioma
+        FROM citas
+        WHERE cita IS NOT NULL
+          AND autor IS NOT NULL
           AND idioma IS NOT NULL
     """)
 
@@ -33,30 +36,30 @@ def obtener_cancion_aleatoria():
     return random.choice(filas)
 
 
-
 @app.route("/")
 def index():
     return render_template("game.html")
 
-@app.route("/cancion")
-def cancion():
-    fila = obtener_cancion_aleatoria()
-    if not fila:
-        return jsonify({"error": "No hay canciones en la base de datos"}), 404
 
-    id, letra, titulo, artista, idioma = fila
+@app.route("/cita")
+def cita():
+    fila = obtener_cita_aleatoria()
+    if not fila:
+        return jsonify({"error": "No hay citas en la base de datos"}), 404
+
+    id_, cita_txt, autor, anio, idioma = fila
+    anio_str = str(anio) if anio is not None else ""
 
     return {
-        "letra_original": letra,
-        "letra_norm": normalizar(letra),
-        "titulo_original": titulo,
-        "titulo_norm": normalizar(titulo),
-        "artista_original": artista,
-        "artista_norm": normalizar(artista),
+        "cita_original": cita_txt,
+        "cita_norm": normalizar(cita_txt),
+        "autor_original": autor,
+        "autor_norm": normalizar(autor),
+        "anio_original": anio_str,
+        "anio_norm": normalizar(anio_str),
         "idioma": idioma
     }
 
 
-# 🔥 ESTE BLOQUE ES IMPRESCINDIBLE
 if __name__ == "__main__":
     app.run(debug=True)

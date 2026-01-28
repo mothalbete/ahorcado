@@ -10,97 +10,145 @@
 body {
     background: #f4f4f8;
     color: #333;
-    padding: 40px;
+
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    padding: 40px 0;
 }
 
-/* ======== CONTENEDOR PRINCIPAL ======== */
-#contenedor {
+/* ============================================================
+   ZONA DE JUEGO: CONTENEDOR BLANCO IZQUIERDA + TECLADO DERECHA
+   ============================================================ */
+#zona-juego {
+    display: flex;
+    gap: 40px;
     width: 100%;
-    max-width: 1500px;
+    max-width: 1800px;
+    align-items: flex-start;
+}
+
+/* ============================================================
+   CONTENEDOR BLANCO IZQUIERDA
+   ============================================================ */
+#contenedor {
+    flex: 0 0 70%;
+    max-width: 70%;
+
     background: white;
     padding: 40px 50px;
     border-radius: 18px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    height: auto;
 }
 
-/* ======== PANEL DE IDIOMA ======== */
-#panel-idioma {
-    text-align: center;
-    font-size: 1.4rem;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-/* ======== FILA PRINCIPAL: LETRA + TECLADO ======== */
-#fila-principal {
-    display: flex;
-    gap: 40px;
-    align-items: stretch; /* clave: iguala alturas */
-}
-
-/* ======== COLUMNA LETRA ======== */
+/* ======== COLUMNA CITA ======== */
 #col-letra {
-    flex: 6;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* ======== PANEL LETRA ======== */
+/* ======== BOTONES ENCIMA DEL PANEL ======== */
+#botones-superiores {
+    display: flex;
+    gap: 10px;
+}
+
+#botones-superiores .btn-meta {
+    flex: 1;
+}
+
+/* ======== PANEL CITA ======== */
 .panel {
     background: #fafafa;
     padding: 40px 50px;
     border-radius: 12px;
     border: 1px solid #e5e5e5;
-
     font-size: 1.7rem;
     line-height: 2.1;
-
-    max-width: 900px;
+    width: 100%;
     overflow: hidden;
     text-align: left;
+    word-break: break-word;
 }
 
-/* ======== BOTÓN REVELAR LETRA ======== */
-.btn-meta {
-    width: 100%;
-    padding: 12px 22px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    background: #4a6cf7;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
+#panel-cita {
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+}
+
+/* ============================================================
+   CHIPS: IDIOMA + AUTOR + AÑO
+   ============================================================ */
+#chips-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.chip {
+    background: #e8e8ef;
+    border-radius: 20px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 0.85rem;
+    color: #444;
+    border: 1px solid #d0d0d8;
+}
+
+.chip-label {
     font-weight: 600;
+    opacity: 0.8;
 }
 
-.btn-meta:hover {
-    background: #3454d1;
+.chip-value {
+    font-weight: 500;
 }
 
-/* ======== COLUMNA TECLADO ======== */
-#col-teclado {
-    flex: 4;
+/* ======== BOTONES PRINCIPALES ======== */
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ============================================================
+   TECLADO DERECHA (ANCHO FIJO)
+   ============================================================ */
+#bloque-teclado {
+    flex: 0 0 300px;
+    max-width: 300px;
+    min-width: 300px;
+
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
 }
 
-/* ======== TECLADO ======== */
+#bloque-teclado h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Teclado estable */
 #teclado {
-    flex: 1; /* clave: ocupa toda la altura disponible */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    align-content: stretch;
+    width: 100%;
 }
 
+/* ======== TECLAS ======== */
 .tecla {
     background: #ececec;
     color: #333;
@@ -119,7 +167,6 @@ body {
 
 .tecla:disabled {
     opacity: 0.45;
-    cursor: default;
 }
 
 .tecla.acierto {
@@ -130,36 +177,4 @@ body {
 .tecla.fallo {
     background: #e74c3c !important;
     color: white;
-}
-
-/* ======== FILA TÍTULO + ARTISTA ======== */
-#fila-meta {
-    display: flex;
-    gap: 40px;
-}
-
-.meta-bloque {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.panel-meta {
-    padding: 25px;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    background: #fafafa;
-    border-radius: 12px;
-    border: 1px solid #e5e5e5;
-}
-
-/* ======== RESPONSIVE ======== */
-@media (max-width: 900px) {
-    #fila-principal {
-        flex-direction: column;
-    }
-    #teclado {
-        grid-template-columns: repeat(6, 1fr);
-    }
 }

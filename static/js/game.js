@@ -1,14 +1,12 @@
-let letraOriginal = "";
-let letraNorm = "";
-let tituloOriginal = "";
-let tituloNorm = "";
-let artistaOriginal = "";
-let artistaNorm = "";
+let citaOriginal = "";
+let citaNorm = "";
+let autorOriginal = "";
+let anioOriginal = "";
 let idioma = "";
 
-let aciertosLetra = [];
-let aciertosTitulo = [];
-let aciertosArtista = [];
+let aciertosCita = [];
+let citaRevelada = false;
+let ultimaAdivinada = []; // variantes de la última letra acertada
 
 /* ======== MAPA DE EQUIVALENCIAS PARA TILDES ======== */
 const equivalencias = {
@@ -21,8 +19,8 @@ const equivalencias = {
 };
 
 /* ======== NORMALIZADOR PARA COMPARAR ======== */
-function normalizar(letra) {
-    return letra
+function normalizar(texto) {
+    return texto
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toUpperCase();
@@ -32,49 +30,57 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-iniciar").addEventListener("click", iniciarJuego);
     document.getElementById("btn-siguiente").addEventListener("click", iniciarJuego);
 
-    document.getElementById("btn-completar-letra").addEventListener("click", () => {
-        aciertosLetra = letraOriginal.toUpperCase().split("");
+    document.getElementById("btn-completar-cita").addEventListener("click", () => {
+        aciertosCita = citaOriginal.toUpperCase().split("");
+        ultimaAdivinada = [];
         mostrarPaneles();
     });
 
-    document.getElementById("btn-completar-titulo").addEventListener("click", () => {
-        aciertosTitulo = tituloOriginal.toUpperCase().split("");
-        mostrarPaneles();
-    });
+    document.getElementById("btn-revelar").addEventListener("click", toggleRevelar);
 
-    document.getElementById("btn-completar-artista").addEventListener("click", () => {
-        aciertosArtista = artistaOriginal.toUpperCase().split("");
-        mostrarPaneles();
-    });
+    // estado inicial del panel (para animación de entrada)
+    const panelCita = document.getElementById("panel-cita");
+    panelCita.classList.add("panel-inactivo");
 
     generarTeclado();
 });
 
 /* ======== INICIAR JUEGO ======== */
 function iniciarJuego() {
-    fetch("/cancion")
+    fetch("/cita")
         .then(r => r.json())
         .then(data => {
-            letraOriginal = data.letra_original;
-            letraNorm = data.letra_norm;
 
-            tituloOriginal = data.titulo_original;
-            tituloNorm = data.titulo_norm;
+            // 🔧 Normalizamos SIEMPRE en frontend
+            citaOriginal = data.cita_original || "";
+            citaNorm = normalizar(citaOriginal);
 
-            artistaOriginal = data.artista_original;
-            artistaNorm = data.artista_norm;
+            autorOriginal = data.autor_original || "";
+            anioOriginal = data.anio_original || "";
 
-            idioma = data.idioma;
+            idioma = data.idioma || "";
             document.getElementById("panel-idioma").textContent = idioma.toUpperCase();
 
-            aciertosLetra = [];
-            aciertosTitulo = [];
-            aciertosArtista = [];
+            aciertosCita = [];
+            citaRevelada = false;
+            ultimaAdivinada = [];
+
+            // Mostrar autor y año directamente como pistas
+            document.getElementById("panel-autor").textContent = autorOriginal;
+            document.getElementById("panel-anio").textContent = anioOriginal;
 
             resetearTeclado();
             mostrarPaneles();
+
+            // reset botón revelar
+            document.getElementById("btn-revelar").textContent = "Revelar cita";
+
+            // animación de expansión del panel
+            const panelCita = document.getElementById("panel-cita");
+            panelCita.classList.remove("panel-inactivo");
+            panelCita.classList.add("panel-activo");
         })
-        .catch(err => console.error("Error cargando canción:", err));
+        .catch(err => console.error("Error cargando cita:", err));
 }
 
 /* ======== TECLADO ======== */
@@ -102,52 +108,70 @@ function resetearTeclado() {
 
 /* ======== PROCESAR LETRA PULSADA ======== */
 function jugarLetra(letra) {
+    if (citaRevelada) return;
+
     const botones = [...document.querySelectorAll(".tecla")];
     const boton = botones.find(b => b.textContent === letra);
+    if (!boton) return;
     boton.disabled = true;
 
     let acierto = false;
 
     const variantes = equivalencias[letra] || [letra];
 
-    // LETRA
-    if (variantes.some(v => letraNorm.toUpperCase().includes(normalizar(v)))) {
-        variantes.forEach(v => aciertosLetra.push(v));
-        acierto = true;
-    }
-
-    // TÍTULO
-    if (variantes.some(v => tituloNorm.toUpperCase().includes(normalizar(v)))) {
-        variantes.forEach(v => aciertosTitulo.push(v));
-        acierto = true;
-    }
-
-    // ARTISTA
-    if (variantes.some(v => artistaNorm.toUpperCase().includes(normalizar(v)))) {
-        variantes.forEach(v => aciertosArtista.push(v));
+    // CITA
+    if (variantes.some(v => citaNorm.includes(normalizar(v)))) {
+        variantes.forEach(v => aciertosCita.push(v.toUpperCase()));
         acierto = true;
     }
 
     boton.classList.add(acierto ? "acierto" : "fallo");
 
+    // guardar qué variantes se acaban de adivinar para animarlas
+    ultimaAdivinada = acierto ? variantes.map(v => v.toUpperCase()) : [];
+
+    mostrarPaneles();
+}
+
+/* ======== REVELAR / OCULTAR ======== */
+function toggleRevelar() {
+    citaRevelada = !citaRevelada;
+
+    document.getElementById("btn-revelar").textContent =
+        citaRevelada ? "Ocultar cita" : "Revelar cita";
+
+    if (citaRevelada) {
+        const cont = document.getElementById("panel-cita");
+        cont.textContent = citaOriginal;
+        return;
+    }
+
+    ultimaAdivinada = [];
     mostrarPaneles();
 }
 
 /* ======== MOSTRAR PANELES ======== */
 function mostrarPaneles() {
-    mostrarPanel("panel-letra", letraOriginal, letraNorm, aciertosLetra);
-    ajustarPanel("panel-letra");
+    if (citaRevelada) {
+        const cont = document.getElementById("panel-cita");
+        cont.textContent = citaOriginal;
+        return;
+    }
 
-    mostrarPanel("panel-titulo", tituloOriginal, tituloNorm, aciertosTitulo);
-    ajustarPanel("panel-titulo");
-
-    mostrarPanel("panel-artista", artistaOriginal, artistaNorm, aciertosArtista);
-    ajustarPanel("panel-artista");
+    mostrarPanel("panel-cita", citaOriginal, citaNorm, aciertosCita, ultimaAdivinada);
+    ajustarPanel("panel-cita");
 }
 
-/* ======== MOSTRAR PANEL INDIVIDUAL ======== */
-function mostrarPanel(id, original, normalizada, aciertos) {
+/* ======== MOSTRAR PANEL INDIVIDUAL (con spans por letra) ======== */
+function mostrarPanel(id, original, normalizada, aciertos, ultima) {
     const cont = document.getElementById(id);
+    if (!cont || !original) {
+        cont.innerHTML = "";
+        return;
+    }
+
+    // 🔧 Seguridad extra: si algo falla, normalizamos aquí
+    normalizada = normalizada || normalizar(original);
 
     const lineasOriginal = original.split("\n");
     const lineasNorm = normalizada.split("\n");
@@ -156,34 +180,45 @@ function mostrarPanel(id, original, normalizada, aciertos) {
 
     for (let li = 0; li < lineasOriginal.length; li++) {
         const lineaOriginal = lineasOriginal[li];
-        const lineaNorm = lineasNorm[li];
-
-        let lineaHTML = "";
+        const lineaNorm = lineasNorm[li] || "";
 
         for (let i = 0; i < lineaNorm.length; i++) {
-            const letraOriginal = lineaOriginal[i];
-            const letraNorm = lineaNorm[i].toUpperCase();
+            const letraOriginal = lineaOriginal[i] || " ";
+            const letraMayus = letraOriginal.toUpperCase();
 
             if (letraOriginal === " ") {
-                lineaHTML += "&nbsp;&nbsp;";
+                html += `<span class="letra espacio">&nbsp;</span>`;
             }
             else if (!/[A-ZÁÉÍÓÚÑ]/i.test(letraOriginal)) {
-                lineaHTML += letraOriginal;
-            }
-            else if (aciertos.includes(letraOriginal.toUpperCase())) {
-                lineaHTML += letraOriginal.toUpperCase();
+                html += `<span class="letra simbolo">${letraOriginal}</span>`;
             }
             else {
-                lineaHTML += "_";
+                const esAcierto = aciertos.includes(letraMayus);
+                const esRecien = esAcierto && ultima.includes(letraMayus);
+
+                const contenido = esAcierto ? letraMayus : "_";
+                const clases = ["letra"];
+                if (esRecien) clases.push("flip");
+
+                html += `<span class="${clases.join(" ")}">${contenido}</span>`;
             }
 
-            lineaHTML += " ";
+            html += " ";
         }
 
-        html += lineaHTML.trim() + "<br>";
+        html += "<br>";
     }
 
     cont.innerHTML = html;
+
+    // quitar la clase flip después de la animación
+    if (ultima.length > 0) {
+        setTimeout(() => {
+            cont.querySelectorAll(".letra.flip").forEach(span => {
+                span.classList.remove("flip");
+            });
+        }, 400);
+    }
 }
 
 /* ============================================================
@@ -193,13 +228,11 @@ function ajustarPanel(id) {
     const el = document.getElementById(id);
     if (!el) return;
 
-    // Evita que el navegador envuelva líneas
     el.style.whiteSpace = "pre";
 
     let fontSize = parseFloat(getComputedStyle(el).fontSize);
     const minSize = 18;
 
-    // Reducir hasta que el contenido quepa sin romper palabras
     while (el.scrollWidth > el.clientWidth && fontSize > minSize) {
         fontSize -= 1;
         el.style.fontSize = fontSize + "px";

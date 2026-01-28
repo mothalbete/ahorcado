@@ -18,7 +18,7 @@ body {
 }
 
 /* ============================================================
-   ZONA DE JUEGO: CONTENEDOR BLANCO IZQUIERDA + TECLADO DERECHA
+   ZONA DE JUEGO
    ============================================================ */
 #zona-juego {
     display: flex;
@@ -26,14 +26,16 @@ body {
     width: 100%;
     max-width: 1800px;
     align-items: flex-start;
+    min-width: 0; /* evita desplazamientos */
 }
 
 /* ============================================================
    CONTENEDOR BLANCO IZQUIERDA
    ============================================================ */
 #contenedor {
-    flex: 0 0 70%;
-    max-width: 70%;
+    flex: 1;
+    min-width: 0; /* 🔥 clave */
+    max-width: calc(100% - 300px - 40px);
 
     background: white;
     padding: 40px 50px;
@@ -43,8 +45,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
-
-    height: auto;
 }
 
 /* ======== COLUMNA CITA ======== */
@@ -52,6 +52,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    min-width: 0;
 }
 
 /* ======== BOTONES ENCIMA DEL PANEL ======== */
@@ -64,28 +65,45 @@ body {
     flex: 1;
 }
 
-/* ======== PANEL CITA ======== */
+/* ============================================================
+   PANEL CITA — SOLO CRECE VERTICALMENTE
+   ============================================================ */
 .panel {
     background: #fafafa;
     padding: 40px 50px;
     border-radius: 12px;
     border: 1px solid #e5e5e5;
+
     font-size: 1.7rem;
     line-height: 2.1;
+
     width: 100%;
-    overflow: hidden;
-    text-align: left;
-    word-break: break-word;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    word-break: normal;
+    overflow-wrap: normal;
+    white-space: normal;
 }
 
-#panel-cita {
-    height: auto;
-    max-height: none;
-    overflow-y: visible;
+/* Palabras que NO se cortan */
+.palabra {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Letras dentro de cada palabra */
+.letra {
+    display: inline-block;
+    min-width: 1.2rem;
+    text-align: center;
 }
 
 /* ============================================================
-   CHIPS: IDIOMA + AUTOR + AÑO
+   CHIPS
    ============================================================ */
 #chips-meta {
     display: flex;
@@ -124,7 +142,7 @@ body {
 }
 
 /* ============================================================
-   TECLADO DERECHA (ANCHO FIJO)
+   TECLADO DERECHA
    ============================================================ */
 #bloque-teclado {
     flex: 0 0 300px;

@@ -26,7 +26,7 @@ body {
     width: 100%;
     max-width: 1800px;
     align-items: flex-start;
-    min-width: 0; /* evita desplazamientos */
+    min-width: 0;
 }
 
 /* ============================================================
@@ -34,7 +34,7 @@ body {
    ============================================================ */
 #contenedor {
     flex: 1;
-    min-width: 0; /* 🔥 clave */
+    min-width: 0;
     max-width: calc(100% - 300px - 40px);
 
     background: white;
@@ -95,10 +95,11 @@ body {
     white-space: nowrap;
 }
 
-/* Letras dentro de cada palabra */
+/* Letras dentro de cada palabra — AJUSTE MEJORADO */
 .letra {
     display: inline-block;
-    min-width: 1.2rem;
+    min-width: 0.8rem;      /* antes 1.2rem → ahora más compacto */
+    margin-right: 0.15rem;  /* separación mínima entre letras */
     text-align: center;
 }
 

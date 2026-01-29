@@ -3,6 +3,7 @@ let citaNorm = "";
 let autorOriginal = "";
 let anioOriginal = "";
 let idioma = "";
+let videoURL = null;
 
 let aciertosCita = [];
 let citaRevelada = false;
@@ -14,13 +15,14 @@ const equivalencias = {
     "I": ["I", "Í"],
     "O": ["O", "Ó"],
     "U": ["U", "Ú"],
-    "N": ["N", "Ñ"]
+    "N": ["N"],
+    "Ñ": ["Ñ"]
 };
 
 function normalizar(texto) {
     return texto
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[\u0300-\u0362\u0364-\u036f]/g, "")
         .toUpperCase();
 }
 
@@ -32,9 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
         aciertosCita = citaOriginal.toUpperCase().split("");
         ultimaAdivinada = [];
         mostrarPaneles();
+        mostrarVideo();
     });
 
     document.getElementById("btn-revelar").addEventListener("click", toggleRevelar);
+
+    document.getElementById("cerrar-video").addEventListener("click", cerrarVideo);
+
+    document.getElementById("siguiente-desde-video").addEventListener("click", () => {
+        cerrarVideo();
+        iniciarJuego();
+    });
 
     generarTeclado();
 });
@@ -50,6 +60,7 @@ function iniciarJuego() {
             autorOriginal = data.autor_original || "";
             anioOriginal = data.anio_original || "";
             idioma = data.idioma || "";
+            videoURL = data.video_url || null;
 
             document.getElementById("panel-idioma").textContent = idioma.toUpperCase();
             document.getElementById("panel-autor").textContent = autorOriginal;
@@ -174,9 +185,11 @@ function mostrarPanel(id, original, normalizada, aciertos, ultima) {
                     const esAcierto = aciertos.includes(letraMayus);
                     const esRecien = esAcierto && ultima.includes(letraMayus);
 
-                    const contenido = esAcierto ? letraMayus : "_";
+                    const contenido = esAcierto ? letraMayus : "";
+
                     const clases = ["letra"];
-                    if (esRecien) clases.push("flip");
+                    if (esAcierto) clases.push("acertada");
+                    if (esRecien) clases.push("animar");
 
                     html += `<span class="${clases.join(" ")}">${contenido}</span>`;
                 }
@@ -189,12 +202,33 @@ function mostrarPanel(id, original, normalizada, aciertos, ultima) {
     }
 
     cont.innerHTML = html;
+}
 
-    if (ultima.length > 0) {
-        setTimeout(() => {
-            cont.querySelectorAll(".letra.flip").forEach(span => {
-                span.classList.remove("flip");
-            });
-        }, 400);
-    }
+/* ============================================================
+   VÍDEO (CON AUTOPLAY)
+   ============================================================ */
+
+function mostrarVideo() {
+    if (!videoURL) return;
+
+    const modal = document.getElementById("video-modal");
+    const video = document.getElementById("video-player");
+
+    video.src = videoURL;
+    video.muted = true;     // ← necesario para autoplay
+    video.autoplay = true;  // ← activa autoplay
+    video.play();           // ← fuerza reproducción
+
+    modal.classList.add("visible");
+}
+
+function cerrarVideo() {
+    const modal = document.getElementById("video-modal");
+    const video = document.getElementById("video-player");
+
+    video.pause();
+    video.currentTime = 0;
+    video.autoplay = false; // ← evita reproducción accidental al cambiar src
+
+    modal.classList.remove("visible");
 }

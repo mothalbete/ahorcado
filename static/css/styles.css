@@ -89,19 +89,86 @@ body {
     white-space: normal;
 }
 
-/* Palabras que NO se cortan */
+/* ============================================================
+   PALABRAS Y LETRAS (CORREGIDO)
+   ============================================================ */
+
+.panel {
+    background: #fafafa;
+    padding: 40px 50px;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+
+    font-size: 1.7rem;
+    line-height: normal; /* ← evita estiramiento vertical */
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    word-break: normal;
+    overflow-wrap: normal;
+    white-space: normal;
+}
+
 .palabra {
-    display: inline-block;
+    display: inline-flex;
+    gap: 0.12rem;
+    margin-right: 0.45rem;
     white-space: nowrap;
 }
 
-/* Letras dentro de cada palabra — AJUSTE MEJORADO */
 .letra {
+    position: relative;
     display: inline-block;
-    min-width: 0.8rem;      /* antes 1.2rem → ahora más compacto */
-    margin-right: 0.15rem;  /* separación mínima entre letras */
+    min-width: 0.8rem;
+    min-height: 1.2em; /* ← asegura espacio vertical */
     text-align: center;
+    font-weight: 600;
+    vertical-align: bottom;
 }
+
+/* Raya guía SIEMPRE visible bajo cada posición de letra */
+.letra::after {
+    content: "_";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.1em; /* ← más preciso que top */
+    color: #555;
+    opacity: 0.7;
+    line-height: 1;
+}
+
+/* Los símbolos (comas, espacios, etc.) NO tienen raya guía */
+.letra.simbolo::after {
+    content: "";
+}
+
+/* Letra acertada */
+.letra.acertada {
+    color: #000;
+    z-index: 2;
+}
+
+/* Animación SOLO en la letra recién acertada */
+.letra.animar {
+    animation: letra-sube 0.28s ease-out;
+}
+
+@keyframes letra-sube {
+    0% {
+        transform: translateY(0.45em);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 /* ============================================================
    CHIPS
@@ -159,7 +226,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Teclado estable */
 #teclado {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -196,4 +262,126 @@ body {
 .tecla.fallo {
     background: #e74c3c !important;
     color: white;
+}
+
+/* ============================================================
+   MODAL DE VÍDEO
+   ============================================================ */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal.visible {
+    display: flex;
+}
+
+.modal-content {
+    background: #000;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#video-player {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cerrar-modal {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cerrar-modal:hover {
+    background: #c0392b;
+}
+
+.cerrar-modal.siguiente {
+    background: #3498db;
+}
+
+.cerrar-modal.siguiente:hover {
+    background: #2980b9;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal.visible {
+    display: flex;
+}
+
+.modal-content {
+    background: #000;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#video-player {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cerrar-modal {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cerrar-modal:hover {
+    background: #c0392b;
+}
+
+.cerrar-modal.siguiente {
+    background: #3498db;
+}
+
+.cerrar-modal.siguiente:hover {
+    background: #2980b9;
 }

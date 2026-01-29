@@ -1,73 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- ZONA DE JUEGO: CONTENEDOR IZQUIERDA + TECLADO DERECHA -->
 <div id="zona-juego">
-
-    <!-- ============================
-         CONTENEDOR BLANCO IZQUIERDA
-         ============================ -->
     <div id="contenedor">
-
-        <!-- PANEL DE CITA -->
         <div id="col-letra">
-
-            <!-- Botones superiores -->
             <div id="botones-superiores">
                 <button id="btn-completar-cita" class="btn-meta">Completar cita</button>
                 <button id="btn-revelar" class="btn-meta">Revelar cita</button>
             </div>
 
             <h2>Cita</h2>
-
             <div id="panel-cita" class="panel placeholder">
                 Pulsa “Iniciar juego” para comenzar
             </div>
 
-            <!-- ============================
-                 CHIPS: IDIOMA + AUTOR + AÑO
-                 ============================ -->
             <div id="chips-meta">
-
-                <div class="chip">
-                    <span class="chip-label">Idioma:</span>
-                    <span id="panel-idioma" class="chip-value"></span>
-                </div>
-
-                <div class="chip">
-                    <span class="chip-label">Autor:</span>
-                    <span id="panel-autor" class="chip-value"></span>
-                </div>
-
-                <div class="chip">
-                    <span class="chip-label">Año:</span>
-                    <span id="panel-anio" class="chip-value"></span>
-                </div>
-
+                <div class="chip"><span class="chip-label">Idioma:</span><span id="panel-idioma" class="chip-value"></span></div>
+                <div class="chip"><span class="chip-label">Autor:</span><span id="panel-autor" class="chip-value"></span></div>
+                <div class="chip"><span class="chip-label">Año:</span><span id="panel-anio" class="chip-value"></span></div>
             </div>
 
-            <!-- Botones principales -->
             <div class="botones">
                 <button id="btn-iniciar">Iniciar juego</button>
                 <button id="btn-siguiente">Siguiente cita</button>
             </div>
-
         </div>
-
     </div>
 
-    <!-- ============================
-         TECLADO A LA DERECHA
-         ============================ -->
     <div id="bloque-teclado">
         <h2>Teclado</h2>
-        <div id="teclado" class="placeholder">
-            El teclado aparecerá aquí
+        <div id="teclado" class="placeholder">El teclado aparecerá aquí</div>
+    </div>
+</div>
+
+<!-- MODAL DE VÍDEO -->
+<div id="video-modal" class="modal">
+    <div class="modal-content">
+        <video id="video-player" controls></video>
+        <div class="modal-buttons">
+            <button id="cerrar-video" class="cerrar-modal">Cerrar</button>
+            <button id="siguiente-desde-video" class="cerrar-modal siguiente">Siguiente cita</button>
         </div>
     </div>
-
 </div>
 
 <script src="{{ url_for('static', filename='js/game.js') }}"></script>
-
 {% endblock %}

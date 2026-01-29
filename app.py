@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
 import sqlite3
 import random
 import unicodedata
+import os
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ def obtener_cita_aleatoria():
     c = conn.cursor()
 
     c.execute("""
-        SELECT id, cita, autor, año, idioma
+        SELECT id, cita, autor, año, idioma, video_url
         FROM citas
         WHERE cita IS NOT NULL
           AND autor IS NOT NULL
@@ -47,8 +48,13 @@ def cita():
     if not fila:
         return jsonify({"error": "No hay citas en la base de datos"}), 404
 
-    id_, cita_txt, autor, anio, idioma = fila
+    id_, cita_txt, autor, anio, idioma, video_filename = fila
     anio_str = str(anio) if anio is not None else ""
+
+    # Construir URL completa del vídeo
+    video_url = None
+    if video_filename:
+        video_url = f"/videos/{video_filename}"
 
     return {
         "cita_original": cita_txt,
@@ -57,8 +63,15 @@ def cita():
         "autor_norm": normalizar(autor),
         "anio_original": anio_str,
         "anio_norm": normalizar(anio_str),
-        "idioma": idioma
+        "idioma": idioma,
+        "video_url": video_url
     }
+
+
+# Ruta para servir vídeos desde /uploads/videos/
+@app.route("/videos/<path:filename>")
+def videos(filename):
+    return send_from_directory(os.path.join(app.root_path, "uploads/videos"), filename)
 
 
 if __name__ == "__main__":

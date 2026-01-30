@@ -238,7 +238,7 @@ add_cita(
 )
 
 add_cita(
-    cita="SOY UN DADO. ES QUE QUE NO SÉ CÓMO EXPLICARLO\n"
+    cita="SOY UN DADO. ES QUE NO SÉ CÓMO EXPLICARLO\n"
          "DE OTRA MANERA.[...] ¡SOY UNA CARTA!\n"
          "¡SOY UNA CARTA AHORA!¿PUEDO SER SORA EN ALGÚN MOMENTO!",
     autor="ALEXELCAPO",

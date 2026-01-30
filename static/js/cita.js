@@ -191,7 +191,7 @@ function mostrarPanel(id, original, normalizada, aciertos, ultima) {
                 }
             }
 
-            html += `<button class="btn-resolver-palabra" ${estabaResuelta ? "disabled" : ""}>Resolver</button>`;
+            html += `<button class="btn-resolver-palabra" ${estabaResuelta ? "disabled" : ""} title="Resolver palabra"></button>`;
             html += `</span> `;
 
             globalIndex++;

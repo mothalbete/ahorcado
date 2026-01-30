@@ -293,4 +293,79 @@ body {
 .cerrar-modal.siguiente {
     background: #3498db;
 }
+/* Botón resolver minimalista */
+.btn-resolver-palabra {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin-left: 6px;
+    border: none;
+    border-radius: 50%;
+    background: #bfc2cc;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Icono: un pequeño check */
+.btn-resolver-palabra::before {
+    content: "✓";
+    font-size: 0.75rem;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-weight: 700;
+}
+
+/* Hover */
+.btn-resolver-palabra:hover {
+    background: #9aa0ad;
+}
+
+/* Desactivado */
+.btn-resolver-palabra:disabled {
+    background: #d5d7dd;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+/* Botón resolver minimalista */
+.btn-resolver-palabra {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin-left: 6px;
+    border: none;
+    border-radius: 50%;
+    background: #bfc2cc;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+/* Icono check */
+.btn-resolver-palabra::before {
+    content: "✓";
+    font-size: 0.75rem;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-weight: 700;
+}
+
+/* Hover */
+.btn-resolver-palabra:hover {
+    background: #9aa0ad;
+}
+
+/* Cuando la palabra está resuelta → botón verde */
+.btn-resolver-palabra:disabled {
+    background: #2ecc71 !important; /* verde */
+    cursor: not-allowed;
+    opacity: 1;
+}
 

@@ -9,15 +9,33 @@
                 <button id="btn-revelar" class="btn-meta">Revelar cita</button>
             </div>
 
-            <h2>Cita</h2>
+            <h2 id="titulo-cita">
+                <span>Cita</span>
+
+                <span id="fallos-wrapper">
+                    <span id="panel-fallos">Fallos: 0/3</span>
+
+                    <button id="btn-reset-fallos" class="btn-reset-fallos" title="Reiniciar fallos">
+                        <svg viewBox="0 0 24 24" class="icono-reset">
+                            <path
+                                d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8z" />
+                        </svg>
+                    </button>
+                </span>
+            </h2>
+
+
             <div id="panel-cita" class="panel placeholder">
                 Pulsa “Iniciar juego” para comenzar
             </div>
 
             <div id="chips-meta">
-                <div class="chip"><span class="chip-label">Idioma:</span><span id="panel-idioma" class="chip-value"></span></div>
-                <div class="chip"><span class="chip-label">Autor:</span><span id="panel-autor" class="chip-value"></span></div>
-                <div class="chip"><span class="chip-label">Año:</span><span id="panel-anio" class="chip-value"></span></div>
+                <div class="chip"><span class="chip-label">Idioma:</span><span id="panel-idioma"
+                        class="chip-value"></span></div>
+                <div class="chip"><span class="chip-label">Autor:</span><span id="panel-autor"
+                        class="chip-value"></span></div>
+                <div class="chip"><span class="chip-label">Año:</span><span id="panel-anio" class="chip-value"></span>
+                </div>
             </div>
 
             <div class="botones">

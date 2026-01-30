@@ -8,6 +8,9 @@ app = Flask(__name__)
 
 DB_PATH = "citas.db"
 
+# === SISTEMA DE CITAS SIN REPETICIÓN ===
+citas_disponibles = []
+
 
 def normalizar(texto):
     return ''.join(
@@ -16,7 +19,8 @@ def normalizar(texto):
     )
 
 
-def obtener_cita_aleatoria():
+def cargar_citas_desde_bd():
+    """Carga todas las citas válidas desde la base de datos."""
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
@@ -30,11 +34,30 @@ def obtener_cita_aleatoria():
 
     filas = c.fetchall()
     conn.close()
+    return filas
 
-    if not filas:
-        return None
 
-    return random.choice(filas)
+def obtener_cita_aleatoria():
+    """
+    Devuelve una cita aleatoria sin repetir.
+    Cuando se agotan todas, recarga el pool.
+    """
+    global citas_disponibles
+
+    # Si no hay citas cargadas o ya se usaron todas, recargar
+    if not citas_disponibles:
+        citas_disponibles = cargar_citas_desde_bd()
+
+        if not citas_disponibles:
+            return None
+
+    # Elegir una cita aleatoria del pool
+    fila = random.choice(citas_disponibles)
+
+    # Eliminarla para evitar repeticiones
+    citas_disponibles.remove(fila)
+
+    return fila
 
 
 @app.route("/")

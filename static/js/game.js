@@ -9,6 +9,10 @@ let aciertosCita = [];
 let citaRevelada = false;
 let ultimaAdivinada = [];
 
+// === FALLOS ===
+let fallos = 0;
+const maxFallos = 3;
+
 const equivalencias = {
     "A": ["A", "Á"],
     "E": ["E", "É"],
@@ -46,6 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
         iniciarJuego();
     });
 
+    // === RESET FALLOS ===
+    document.getElementById("btn-reset-fallos").addEventListener("click", () => {
+        fallos = 0;
+        actualizarFallos();
+    });
+
     generarTeclado();
 });
 
@@ -69,6 +79,10 @@ function iniciarJuego() {
             aciertosCita = [];
             citaRevelada = false;
             ultimaAdivinada = [];
+
+            // === RESET FALLOS AL INICIAR ===
+            fallos = 0;
+            actualizarFallos();
 
             resetearTeclado();
             mostrarPaneles();
@@ -119,6 +133,12 @@ function jugarLetra(letra) {
 
     boton.classList.add(acierto ? "acierto" : "fallo");
     ultimaAdivinada = acierto ? variantes.map(v => v.toUpperCase()) : [];
+
+    // === FALLO ===
+    if (!acierto) {
+        fallos++;
+        actualizarFallos();
+    }
 
     mostrarPaneles();
 }
@@ -205,7 +225,15 @@ function mostrarPanel(id, original, normalizada, aciertos, ultima) {
 }
 
 /* ============================================================
-   VÍDEO (CON AUTOPLAY)
+   FALLOS: ACTUALIZAR PANEL
+   ============================================================ */
+function actualizarFallos() {
+    const panel = document.getElementById("panel-fallos");
+    panel.textContent = `Fallos: ${fallos}/${maxFallos}`;
+}
+
+/* ============================================================
+   VÍDEO (CON AUTOPLAY + AUDIO)
    ============================================================ */
 
 function mostrarVideo() {
@@ -215,9 +243,23 @@ function mostrarVideo() {
     const video = document.getElementById("video-player");
 
     video.src = videoURL;
-    video.muted = true;     // ← necesario para autoplay
-    video.autoplay = true;  // ← activa autoplay
-    video.play();           // ← fuerza reproducción
+
+    video.muted = true;
+    video.autoplay = true;
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            video.muted = false;
+            video.play();
+        }).catch(() => {
+            setTimeout(() => {
+                video.muted = false;
+                video.play();
+            }, 150);
+        });
+    }
 
     modal.classList.add("visible");
 }
@@ -228,7 +270,7 @@ function cerrarVideo() {
 
     video.pause();
     video.currentTime = 0;
-    video.autoplay = false; // ← evita reproducción accidental al cambiar src
+    video.autoplay = false;
 
     modal.classList.remove("visible");
 }

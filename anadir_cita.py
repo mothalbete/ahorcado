@@ -30,7 +30,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2023",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="nanako.mp4"   # ← archivo dentro de /uploads/videos/
 )
 
 
@@ -41,7 +41,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2023",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="cuello.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -51,7 +51,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2025",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="llore.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -63,7 +63,20 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="comicon.mp4"   # ← archivo dentro de /uploads/videos/
+
+)
+
+add_cita(
+    cita="ZAPATILLAS DE PUTO CLOWN: 50 PLATINES.\n"
+    "LOS PANTALONES ESTOS DE BOMBACHO: 250 PLATINES.\n"
+    "LLAVE ESPADA: 12000 PLANITES.\n"
+    "PUTÍSIMOS TRAIDORES DE MIERDA, HIJOS DE LA GRAN PUTA.\n"
+    "SUCIAS RRRRATAS EH... GRATIS",
+    autor="ALEXELCAPO",
+    año="2022",
+    idioma="ESPAÑOL",
+    video_url="drip.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -73,17 +86,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="— ¡NOS MATARÁN A TODOS!\n"
-         "— Y CON RAZÓN. Y MERECIDO VA A SER",
-    autor="ALEXELCAPO",
-    año="2024",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="lore.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -94,7 +97,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="adolescente.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -103,7 +106,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="png.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -114,7 +117,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="patopekin.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -126,7 +129,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="canonicamente.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -137,7 +140,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="furros.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -148,16 +151,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="¿DEBERÍA HABER LEÍDO LO QUE PONÍA?",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="funeral.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -167,7 +161,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="botas.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -177,19 +171,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="LA VERDAD ES QUE ES UN PERSONAJE COMPLETO, EH. SU ARCO\n"
-         "DE PERSONAJE ES SER SECUESTRADA EN EL PRIMER JUEGO Y SER\n"
-         "SECUESTRADA EN EL SEGUNDO JUEGO. ESPECTÁCULAR.",
-    autor="ALEXELCAPO",
-
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="metafora.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -200,29 +182,17 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="phmares.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
 add_cita(
-    cita="ME HACE GRACIA PORQUE ENTIENDO QUE AQUÍ LA COSA ES TIENES QUE\n"
-         "CONSEGUIR QUE SE ENAMORE DE TI SIN HABLAR, ¿NO? PERO...\n"
+    cita="PERO...\n"
          "¿URSULA SABE QUE ARIEL ES COMO... UNA MUJER SÚPER GUAPA?",
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="HA ROZAO EL BORDE Y EL TÍO: 'ME MUERO [...] UN PIXEL HA TOCADO\n"
-         "MI ZAPATILLA MONSTRUOSAMENTE GRANDE DE PUTO CLOWN QUE LLEVO PUES\n"
-         "ME TENGO QUE MORIR. ES JUSTO.'",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="argumentazo.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -233,7 +203,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="rikuesees.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -243,7 +213,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="auxilio.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -253,40 +223,7 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="O SEA, HA SIDO DOS VECES TAPTADA, QUE ESO ES\n"
-         "COMO UNA ALUNACIÓN DEL RAPTO, O SEA: YA NO\n"
-         "ESTÁ RAPTADA, ¿NO?",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="Y AHORA EL TÍO SALE, CON TODA SU POLLA DE RATA\n"
-         "SALE DE AHÍ COMO: '¿QUÉ HA PASADO? SE ME CUIDAN'",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
-
-)
-
-add_cita(
-    cita="REALMENTE ES COMO WORDLBUILDING, PORQUE CLARO,\n"
-         "EN ESTOS MUNDOS LA PEÑA TIENE LOS PIES GIGANTES,\n"
-         "LAS MANOS GRANDES Y POR LO TANTO, LOS POLOS DE ESTE MUNDO\n"
-         "TIENEN MÁS PALO, PORQUE SINO NO PODRÍAN COGERLOS.",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="explosion.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -296,27 +233,18 @@ add_cita(
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="dos.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
 add_cita(
     cita="SOY UN DADO. ES QUE QUE NO SÉ CÓMO EXPLICARLO\n"
-         "DE OTRA MANERA. SOY UN DADO [...] ¡SOY UNA CARTA!\n"
+         "DE OTRA MANERA.[...] ¡SOY UNA CARTA!\n"
          "¡SOY UNA CARTA AHORA!¿PUEDO SER SORA EN ALGÚN MOMENTO!",
     autor="ALEXELCAPO",
     año="2022",
     idioma="ESPAÑOL",
-)
-
-add_cita(
-    cita="¡Y A TOMAR POR EL CULO! ¿QUÉ ES UN GIÓN?\n"
-         "NADIE LO SABE. CUALQUIER COSA PODRÍA HABER PASADO.\n"
-         "ESA ES LA EXPLICACIÓN.",
-    autor="ALEXELCAPO",
-    año="2022",
-    idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="dado.mp4"   # ← archivo dentro de /uploads/videos/
 
 )
 
@@ -327,6 +255,16 @@ add_cita(
     autor="ALEXELCAPO",
     año="2023",
     idioma="ESPAÑOL",
-    video_url=""   # ← archivo dentro de /uploads/videos/
+    video_url="niños.mp4"   # ← archivo dentro de /uploads/videos/
+
+)
+
+add_cita(
+    cita="¡QUÉ ESTÁS DICIENDO! SI CASI NOS METEN\n"
+    "UNA PALIZA CUATRO BORRACHOS EN UN CALLEJÓN",
+    autor="ALEXELCAPO",
+    año="2023",
+    idioma="ESPAÑOL",
+    video_url="borrachos.mp4"   # ← archivo dentro de /uploads/videos/
 
 )

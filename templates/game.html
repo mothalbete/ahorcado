@@ -2,8 +2,54 @@
 {% block content %}
 
 <div id="zona-juego">
+
+    <!-- ============================
+         CONTENEDOR PRINCIPAL IZQUIERDO
+    ============================= -->
     <div id="contenedor">
+
+        <!-- ============================
+             EQUIPOS DENTRO DEL CONTENEDOR
+        ============================= -->
+        <div id="equipos-wrapper">
+
+            <div id="selector-equipos">
+                <button class="btn-equipo activo" data-equipo="1">
+                    <span class="nombre-equipo">Equipo 1</span>
+                    <span class="rename-equipo" data-equipo="1">✏️</span>
+                </button>
+
+                <button class="btn-equipo" data-equipo="2">
+                    <span class="nombre-equipo">Equipo 2</span>
+                    <span class="rename-equipo" data-equipo="2">✏️</span>
+                </button>
+
+                <button class="btn-equipo" data-equipo="3">
+                    <span class="nombre-equipo">Equipo 3</span>
+                    <span class="rename-equipo" data-equipo="3">✏️</span>
+                </button>
+
+                <button class="btn-equipo" data-equipo="4">
+                    <span class="nombre-equipo">Equipo 4</span>
+                    <span class="rename-equipo" data-equipo="4">✏️</span>
+                </button>
+
+                <button class="btn-equipo-add">+ Añadir equipo</button>
+            </div>
+
+            <div id="panel-equipo-activo">
+                <h3 id="equipo-activo-nombre"></h3>
+                <p>Fallos: <span id="equipo-activo-fallos">0</span>/3</p>
+                <p>Citas ganadas: <span id="equipo-activo-ganadas">0</span></p>
+            </div>
+
+        </div>
+
+        <!-- ============================
+             ZONA DE JUEGO ORIGINAL
+        ============================= -->
         <div id="col-letra">
+
             <div id="botones-superiores">
                 <button id="btn-completar-cita" class="btn-meta">Completar cita</button>
                 <button id="btn-revelar" class="btn-meta">Revelar cita</button>
@@ -24,7 +70,6 @@
                 </span>
             </h2>
 
-
             <div id="panel-cita" class="panel placeholder">
                 Pulsa “Iniciar juego” para comenzar
             </div>
@@ -42,16 +87,23 @@
                 <button id="btn-iniciar">Iniciar juego</button>
                 <button id="btn-siguiente">Siguiente cita</button>
             </div>
+
         </div>
     </div>
 
+    <!-- ============================
+         TECLADO DERECHA
+    ============================= -->
     <div id="bloque-teclado">
         <h2>Teclado</h2>
         <div id="teclado" class="placeholder">El teclado aparecerá aquí</div>
     </div>
+
 </div>
 
-<!-- MODAL DE VÍDEO -->
+<!-- ============================
+     MODAL DE VÍDEO
+============================= -->
 <div id="video-modal" class="modal">
     <div class="modal-content">
         <video id="video-player" controls></video>
@@ -62,5 +114,5 @@
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock %}
